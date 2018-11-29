@@ -33,3 +33,10 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    AppBundle\Service\PasswordChecker\:
+        resource: '../../src/AppBundle/Service/PasswordChecker'
+        public: true
+        arguments: [!tagged password.checker.active]
+
+    
