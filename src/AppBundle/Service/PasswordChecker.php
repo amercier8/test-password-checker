@@ -10,21 +10,7 @@ use AppBundle\PasswordChecker\AnagramChecker\AnagramChecker;
 
 class PasswordChecker
 {
-    /**
-     * @var MinSizeChecker
-     */
-    private $minSizeChecker;
-
-    /**
-     * @var AsciiChecker
-     */
-    private $asciiChecker;
-
-    /**
-     * @var AnagramChecker
-     */
-    private $anagramChecker;
-
+    
     public function __construct(iterable $activePasswordCheckers)
     {
         $this->activePasswordCheckers = $activePasswordCheckers;
