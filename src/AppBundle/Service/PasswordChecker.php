@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AppBundle\Service;
 
-use AppBundle\PasswordChecker\MinSizeChecker;
-use AppBundle\PasswordChecker\AsciiChecker;
-use AppBundle\PasswordChecker\AnagramChecker;
+use AppBundle\PasswordChecker\MinSizeChecker\MinSizeChecker;
+use AppBundle\PasswordChecker\AsciiChecker\AsciiChecker;
+use AppBundle\PasswordChecker\AnagramChecker\AnagramChecker;
 
 class PasswordChecker
 {
@@ -25,11 +25,9 @@ class PasswordChecker
      */
     private $anagramChecker;
 
-    public function __construct(MinSizeChecker $minSizeChecker, AsciiChecker $asciiChecker, AnagramChecker $anagramChecker)
+    public function __construct(iterable $activePasswordCheckers)
     {
-        $this->minSizeChecker = $minSizeChecker;
-        $this->asciiChecker = $asciiChecker;
-        $this->anagramChecker = $anagramChecker;
+        $this->activePasswordCheckers = $activePasswordCheckers;
     }
 
     /**
@@ -41,16 +39,13 @@ class PasswordChecker
      */
     public function check(string $password): ?string
     {
-        if (false === $this->minSizeChecker->check($password)) {
-            return $this->minSizeChecker->message();
-        }
-        elseif(false === $this->asciiChecker->check($password)) {
-            return $this->asciiChecker->message();
-        }
-        elseif(false === $this->anagramChecker->check($password)) {
-            return $this->anagramChecker->message();
+        foreach ($this->activePasswordCheckers as $activePasswordChecker) {
+            if (false === $activePasswordChecker->check($password)) {
+                    return $activePasswordChecker->message();
+                }
         }
 
         return null;
     }
+
 }

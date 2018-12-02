@@ -1,6 +1,8 @@
 <?php
 
-namespace AppBundle\PasswordChecker;
+namespace AppBundle\PasswordChecker\AsciiChecker;
+use AppBundle\PasswordChecker\PasswordCheckerInterface\PasswordCheckerInterface;
+
 
 class AsciiChecker implements PasswordCheckerInterface
 {

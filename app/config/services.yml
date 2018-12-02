@@ -34,9 +34,30 @@ services:
     #     arguments:
     #         $someArgument: 'some_value'
 
-    AppBundle\Service\PasswordChecker\:
-        resource: '../../src/AppBundle/Service/PasswordChecker'
-        public: true
-        arguments: [!tagged password.checker.active]
+    # début ajouts alex
+    # AppBundle\PasswordChecker\AnagramChecker\:
+    # AppBundle\PasswordChecker\:
+    AnagramChecker:
+        namespace: AppBundle\PasswordChecker\AnagramChecker\
+        resource: '../../src/AppBundle/PasswordChecker/AnagramChecker/'
+        # resource: '../../src/AppBundle/PasswordChecker'
+        # resource: '../../src/AppBundle/PasswordChecker'
+        tags: ['active.PasswordChecker']
 
+    # AppBundle\PasswordChecker\:
+    AsciiChecker:
+        namespace: AppBundle\PasswordChecker\AsciiChecker\
+        resource: '../../src/AppBundle/PasswordChecker/AsciiChecker'
+        # resource: '../../src/AppBundle/PasswordChecker/AsciiChecker'
+        tags: ['active.PasswordChecker']
+
+    # AppBundle\PasswordChecker\:
+    MinSizeChecker:
+        namespace: AppBundle\PasswordChecker\MinSizeChecker\
+        resource: '../../src/AppBundle/PasswordChecker/MinSizeChecker'
+        tags: ['active.PasswordChecker']
+
+    AppBundle\Service\:
+        resource: '../../src/AppBundle/Service'
+        arguments: [!tagged active.PasswordChecker]
     

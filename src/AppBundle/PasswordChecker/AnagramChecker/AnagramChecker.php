@@ -1,6 +1,8 @@
 <?php
 
-namespace AppBundle\PasswordChecker;
+namespace AppBundle\PasswordChecker\AnagramChecker;
+use AppBundle\PasswordChecker\PasswordCheckerInterface\PasswordCheckerInterface;
+
 
 class AnagramChecker implements PasswordCheckerInterface
 {

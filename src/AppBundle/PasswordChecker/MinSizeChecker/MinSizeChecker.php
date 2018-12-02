@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AppBundle\PasswordChecker;
+namespace AppBundle\PasswordChecker\MinSizeChecker;
+use AppBundle\PasswordChecker\PasswordCheckerInterface\PasswordCheckerInterface;
+
 
 class MinSizeChecker implements PasswordCheckerInterface
 {
