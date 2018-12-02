@@ -38,6 +38,7 @@ services:
         resource: '../../src/AppBundle/Service'
         arguments: [!tagged active.PasswordChecker]
 
+    # To activate a checker, its tag "'active.PasswordChecker']" has to be uncommented
     AnagramChecker:
         namespace: AppBundle\PasswordChecker\AnagramChecker\
         resource: '../../src/AppBundle/PasswordChecker/AnagramChecker/'
