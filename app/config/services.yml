@@ -34,6 +34,10 @@ services:
     #     arguments:
     #         $someArgument: 'some_value'
 
+    AppBundle\Service\:
+        resource: '../../src/AppBundle/Service'
+        arguments: [!tagged active.PasswordChecker]
+
     AnagramChecker:
         namespace: AppBundle\PasswordChecker\AnagramChecker\
         resource: '../../src/AppBundle/PasswordChecker/AnagramChecker/'
@@ -48,8 +52,4 @@ services:
         namespace: AppBundle\PasswordChecker\MinSizeChecker\
         resource: '../../src/AppBundle/PasswordChecker/MinSizeChecker'
         # tags: ['active.PasswordChecker']
-
-    AppBundle\Service\:
-        resource: '../../src/AppBundle/Service'
-        arguments: [!tagged active.PasswordChecker]
     
